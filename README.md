@@ -85,8 +85,10 @@ sql = <<-SQL
   )
 SQL
 
+
 ActiveRecord::Base.connection.execute(sql)
 ```
+Is the above SQL code what's intended to be there?  Before, it's implied we're creating an `artists` table, and immediately following, we create an `artists` table in the migration file, but the SQL code above creates a `songs` table.  The concept is still clear -- the 'old way' (raw SQL) vs. the 'new way' (using migrations).  Another similar question follows later on in this lesson in lines 171-184
 
 Now that we have access to `ActiveRecord::Migration`, we can create tables using only Ruby. Yay!
 
@@ -166,7 +168,7 @@ class Artist < ActiveRecord::Base
 end
 ```
 
-Last, we need to create our `artists` table with SQL
+Last, we need to create our `songs` table with SQL
 
 ```ruby
 # artist.rb
@@ -185,6 +187,9 @@ class Artist < ActiveRecord::Base
   end
 end
 ```
+I find the above bit (lines 171-189) to be confusing in two ways:
+1. It says we're going to create an `artists` table but the SQL creates a `songs` table, and
+2. For the rest of this exercise, this part of code seems lost.  Is it to illustrate the old way, or should it not be there?  Or is it illustrating something else?  It's entirely possible that I'm missing something, or alottathing, of course! :)
 
 To test it out, let's use the rake task `rake console`, which we've created in the `Rakefile`.
 
