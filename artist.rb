@@ -12,14 +12,13 @@ class Artist < ActiveRecord::Base
 
   def self.create_table
   ## ??? This does not work despite appearing identical.
-  # 	sql = <<-SQL
-  # 	CREATE TABLE IF NOT EXISTS songs (
-		# 	id INTEGER PRIMARY KEY,
-		# 	title TEXT,
-		# 	length INTEGER
-		# 	);
+		# sql = <<-SQL
+		#   CREATE TABLE IF NOT EXISTS songs (
+		#   id INTEGER PRIMARY KEY,
+		#   title TEXT,
+		#   length INTEGER
+		#   );
 		# SQL 
-
 		sql = <<-SQL
 		  CREATE TABLE IF NOT EXISTS songs (
 		  id INTEGER PRIMARY KEY,
