@@ -5,7 +5,7 @@ class Artist < ActiveRecord::Base
   CREATE TABLE IF NOT EXISTS artists (
   id INTEGER PRIMARY KEY,
   name TEXT,
-  genre TEXT,
+  genre INTEGER,
   age INTEGER,
   hometown TEXT
   )
