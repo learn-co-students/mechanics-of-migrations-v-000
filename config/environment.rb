@@ -8,12 +8,6 @@ require 'date'
 require 'bundler/setup'
 Bundler.require
 
-
-
-
-
-require_relative "../artist.rb"
-
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
   :database => "db/artists.sqlite"
@@ -30,3 +24,10 @@ sql = <<-SQL
 SQL
  
 ActiveRecord::Base.connection.execute(sql)
+
+
+
+
+
+require_relative "../artist.rb"
+
