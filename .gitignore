@@ -1,4 +1,4 @@
 db/artists-*.sqlite
-db/schema.rb
-db/migrate
+db/schema.rb#
+#db/migrate
 .DS_Store
