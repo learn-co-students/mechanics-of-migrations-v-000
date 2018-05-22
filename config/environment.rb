@@ -4,6 +4,7 @@ require 'yaml/store'
 require 'ostruct'
 require 'date'
 require 'sinatra/activerecord/rake'
+require_relative '../artist.rb'
 
 
 require 'bundler/setup'
