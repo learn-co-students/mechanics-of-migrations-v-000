@@ -63,11 +63,11 @@ DEPENDENCIES
   activerecord
   database_cleaner
   pry
-  rake
+  rake (= 11.2.2)
   require_all
   rspec
   sinatra-activerecord
   sqlite3
 
 BUNDLED WITH
-   1.12.5
+   1.16.2
