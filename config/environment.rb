@@ -12,3 +12,4 @@ ActiveRecord::Base.establish_connection(
   :database => "db/artists.sqlite"
 )
 
+ENV['SINATRA_ENV'] ||= "development"
