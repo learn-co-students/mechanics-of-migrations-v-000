@@ -7,18 +7,18 @@
 ## Setup
 
 1. We're going to use the `activerecord` gem to create a mapping between our
-   database and model.
+database and model.
 2. While this is marked as a Readme, you should code-along with this document.
-   If you have access to a Flatiron School sandbox (you'll see a blue button up
-   top), launch it. If you're working on a local system, simply open a new
-   terminal window.
+If you have access to a Flatiron School sandbox (you'll see a blue button up
+top), launch it. If you're working on a local system, simply open a new
+terminal window.
 3. Once you're in a terminal environment, issue `git clone <clone source
-   path>`. You'll find the path by clicking on the "Clone or download" button
-   at the [repo][].
+path>`. You'll find the path by clicking on the "Clone or download" button
+at the [repo][].
 4. `cd` into the cloned directory e.g. `cd mechanics-of-migrations-v-000/`
 5. Ensure you can `bundle` in the directory: `bundle install`
 6. If that works, then you're ready to proceed. If not, use a help resource
-   like Ask a Question or ask a facilitator.
+like Ask a Question or ask a facilitator.
 
 ## Migrations
 
@@ -50,42 +50,42 @@ at the appropriate time.
 ### Setting Up Your Migration
 
 1. Create a directory called `db` at the top level of the lesson's directory.
-   Then, within the `db` directory, create a `migrate` directory. The
-   `mkdir` command is the appropriate tool to use here.
+Then, within the `db` directory, create a `migrate` directory. The
+`mkdir` command is the appropriate tool to use here.
 2. In the `db/migrate ` directory, create a file called `01_create_artists.rb`
-   (we'll talk about why we added the `01` later).
+(we'll talk about why we added the `01` later).
 
 ```text
 mechanics-of-migrations-v-000/
-  config/
-    environment.rb
-  db/
-    migrate/
-      01_create_artists.rb
-  spec/
-    artist_spec.rb
-    spec_helper.rb
-  .gitignore
-  .learn
-  .rspec
-  artist.rb
-  CONTRIBUTING.md
-  Gemfile
-  Gemfile.lock
-  LICENSE.md
-  Rakefile
-  README.md
+config/
+environment.rb
+db/
+migrate/
+01_create_artists.rb
+spec/
+artist_spec.rb
+spec_helper.rb
+.gitignore
+.learn
+.rspec
+artist.rb
+CONTRIBUTING.md
+Gemfile
+Gemfile.lock
+LICENSE.md
+Rakefile
+README.md
 ```
 
 ```ruby
 # db/migrate/01_create_artists.rb
 
 class CreateArtists < ActiveRecord::Migration
-  def up
-  end
+    def up
+    end
 
-  def down
-  end
+    def down
+    end
 end
 ```
 
@@ -104,8 +104,8 @@ more common for basic migrations.
 # db/migrate/01_create_artists.rb
 
 class CreateArtists < ActiveRecord::Migration
-  def change
-  end
+    def change
+    end
 end
 
 ```
@@ -127,8 +127,8 @@ First, we'd have to connect to a database:
 
 ```ruby
 connection = ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
-  :database => "db/artists.sqlite"
+:adapter => "sqlite3",
+:database => "db/artists.sqlite"
 )
 ```
 
@@ -136,13 +136,13 @@ Then, we'd create our table using SQL:
 
 ```ruby
 sql = <<-SQL
-  CREATE TABLE IF NOT EXISTS artists (
-  id INTEGER PRIMARY KEY,
-  name TEXT,
-  genre TEXT,
-  age INTEGER,
-  hometown TEXT
-  )
+CREATE TABLE IF NOT EXISTS artists (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    genre TEXT,
+    age INTEGER,
+    hometown TEXT
+)
 SQL
 
 ActiveRecord::Base.connection.execute(sql)
@@ -155,8 +155,8 @@ using only Ruby. Yay!
 ```ruby
 # db/migrate/01_create_artists.rb
 def change
-  create_table :artists do |t|
-  end
+    create_table :artists do |t|
+    end
 end
 ```
 
@@ -171,14 +171,14 @@ No point in having a table that has no columns in it, so lets add a few:
 # db/migrate/01_create_artists.rb
 
 class CreateArtists < ActiveRecord::Migration
-  def change
-    create_table :artists do |t|
-      t.string :name
-      t.string :genre
-      t.integer :age
-      t.string :hometown
+    def change
+        create_table :artists do |t|
+            t.string :name
+            t.string :genre
+            t.integer :age
+            t.string :hometown
+        end
     end
-  end
 end
 ```
 
@@ -210,8 +210,8 @@ require 'bundler/setup'
 Bundler.require
 
 ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
-  :database => "db/artists.sqlite"
+:adapter => "sqlite3",
+:database => "db/artists.sqlite"
 )
 ```
 
@@ -288,7 +288,7 @@ Return an array of all Artists from the database:
 ```ruby
 Artist.all
 # => [#<Artist id: 1, name: "Jon", genre: nil, age: 30, hometown: nil>,
- #<Artist id: 2, name: "Kelly", genre: nil, age: nil, hometown: nil>]
+#<Artist id: 2, name: "Kelly", genre: nil, age: nil, hometown: nil>]
 ```
 
 Find an Artist by name:
@@ -312,74 +312,74 @@ keeps track of the migrations we've already run, so adding the new code to our
 previous migration (or dropping the entire table), the `01_create_artists.rb`
 migration won't be re-executed when we run `rake db:migrate` again. Generally,
 the best practice for database management (especially in a production
-environment) is creating new migrations to modify existing tables. That way,
-we'll have a clear, linear record of all of the changes that have led to our
-current database structure.
+    environment) is creating new migrations to modify existing tables. That way,
+    we'll have a clear, linear record of all of the changes that have led to our
+    current database structure.
 
-To make this change we're going to need a new migration, which we'll call
-`02_add_favorite_food_to_artists.rb`.
+    To make this change we're going to need a new migration, which we'll call
+    `02_add_favorite_food_to_artists.rb`.
 
-```ruby
-# db/migrate/02_add_favorite_food_to_artists.rb
+    ```ruby
+    # db/migrate/02_add_favorite_food_to_artists.rb
 
-class AddFavoriteFoodToArtists < ActiveRecord::Migration
-  def change
-    add_column :artists, :favorite_food, :string
-  end
-end
-```
+    class AddFavoriteFoodToArtists < ActiveRecord::Migration
+        def change
+            add_column :artists, :favorite_food, :string
+        end
+    end
+    ```
 
-Pretty awesome, right? We just told Active Record to add a column to the
-`artists` table called `favorite_food` and that it will contain a string.
+    Pretty awesome, right? We just told Active Record to add a column to the
+    `artists` table called `favorite_food` and that it will contain a string.
 
-Notice how we incremented the number in the file name there? Imagine for a
-minute that you deleted your original database and wanted to execute the
-migrations again. Active Record is going to execute each file, but it does so
-in alpha-numerical order. If we didn't have the numbers, our `add_column`
-migration would have tried to run first (`[a]dd_favorite...` comes before
-`[c]reate_artists...`), and our `artists` table wouldn't have even been created
-yet! So we used some numbers to make sure the migrations execute in order. In
-reality, our two-digit system is very rudimentary. As you'll see later on,
-frameworks like Rails have generators that create migrations with very accurate
-timestamps, so you'll never have to worry about hand-numbering.
+    Notice how we incremented the number in the file name there? Imagine for a
+    minute that you deleted your original database and wanted to execute the
+    migrations again. Active Record is going to execute each file, but it does so
+    in alpha-numerical order. If we didn't have the numbers, our `add_column`
+    migration would have tried to run first (`[a]dd_favorite...` comes before
+        `[c]reate_artists...`), and our `artists` table wouldn't have even been created
+        yet! So we used some numbers to make sure the migrations execute in order. In
+        reality, our two-digit system is very rudimentary. As you'll see later on,
+        frameworks like Rails have generators that create migrations with very accurate
+        timestamps, so you'll never have to worry about hand-numbering.
 
-Now that you've saved the migration, go back to the terminal to run it:
+        Now that you've saved the migration, go back to the terminal to run it:
 
-`rake db:migrate`
+        `rake db:migrate`
 
-Awesome! Now go back to the console with the `rake console` command, and check it out:
+        Awesome! Now go back to the console with the `rake console` command, and check it out:
 
-```ruby
-Artist.column_names
-# => ["id", "name", "genre", "age", "hometown", "favorite_food"]
-```
+        ```ruby
+        Artist.column_names
+        # => ["id", "name", "genre", "age", "hometown", "favorite_food"]
+        ```
 
-Great!
+        Great!
 
-Nope- wait. Word just came down from the boss- you weren't supposed to ship
-that change yet! OH NO! No worries, we'll roll back to the first migration.
+        Nope- wait. Word just came down from the boss- you weren't supposed to ship
+        that change yet! OH NO! No worries, we'll roll back to the first migration.
 
-Run `rake -T`. Which command should we use?
+        Run `rake -T`. Which command should we use?
 
-`rake db:rollback`
+        `rake db:rollback`
 
-Then drop back into the console to double check:
+        Then drop back into the console to double check:
 
 
-```ruby
-Artist.column_names
-# => ["id", "name", "genre", "age", "hometown"]
-```
+        ```ruby
+        Artist.column_names
+        # => ["id", "name", "genre", "age", "hometown"]
+        ```
 
-Oh good, your job is saved. Thanks Active Record! When the boss says it's
-actually time to add that column, you can just run `rake db:migrate` again!
+        Oh good, your job is saved. Thanks Active Record! When the boss says it's
+        actually time to add that column, you can just run `rake db:migrate` again!
 
-Woohoo!
+        Woohoo!
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/mechanics-of-migrations'>Mechanics of Migrations</a> on Learn.co and start learning to code for free.</p>
+        <p data-visibility='hidden'>View <a href='https://learn.co/lessons/mechanics-of-migrations'>Mechanics of Migrations</a> on Learn.co and start learning to code for free.</p>
 
-[guide-migrations]: http://guides.rubyonrails.org/v3.2.8/migrations.html
-[repo]: https://github.com/learn-co-students/mechanics-of-migrations-v-000
-[change-method]: http://edgeguides.rubyonrails.org/active_record_migrations.html#using-the-change-method
-[writing-mig]: http://guides.rubyonrails.org/migrations.html#writing-a-migration
-[crud]: http://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data
+        [guide-migrations]: http://guides.rubyonrails.org/v3.2.8/migrations.html
+        [repo]: https://github.com/learn-co-students/mechanics-of-migrations-v-000
+        [change-method]: http://edgeguides.rubyonrails.org/active_record_migrations.html#using-the-change-method
+        [writing-mig]: http://guides.rubyonrails.org/migrations.html#writing-a-migration
+        [crud]: http://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data
