@@ -11,7 +11,7 @@ describe "Artist" do
 
     expect(artist.name).to eq("Justice")
     expect(artist.genre).to eq("Electronic")
-    expect(artist.age).to eq(Time.now.strftime("%Y").to_i - 2003)
+    expect(artist.age).to eq("15")
     expect(artist.hometown).to eq("Paris")
   end
 
@@ -35,7 +35,7 @@ describe "Artist" do
     expect(Artist.find_by(name: "Taylor Swift")).to eq(taytay)
   end
 
-  it "can roll back to have no favorite_food attribute for Artist" do    
+  it "can roll back to have no favorite_food attribute for Artist" do
     expect(Artist.column_names).to eq(["id", "name", "genre", "age", "hometown"])
   end
 end
