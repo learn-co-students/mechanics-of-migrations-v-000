@@ -6,10 +6,25 @@ require 'date'
 
 
 require 'bundler/setup'
-Bundler.require
+Bundler.require #requires the gems in our Gemfile
 
 
 # put the code to connect to the database here
+connection = ActiveRecord::Base.establish_connection(
+  :adapter => "sqlite3",
+  :database => "db/artists.sqlite"
+)
 
+sql = <<-SQL
+  CREATE TABLE IF NOT EXISTS artists (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    genre TEXT,
+    age INTEGER,
+    hometown TEXT
+  )
+SQL
+
+ActiveRecord::Base.connection.execute(sql)
 
 require_relative "../artist.rb"
