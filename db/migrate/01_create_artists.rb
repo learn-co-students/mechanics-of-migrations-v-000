@@ -1,4 +1,5 @@
 class CreateArtists < ActiveRecord::Migration
+  
     def up 
     end
 
@@ -13,4 +14,5 @@ class CreateArtists < ActiveRecord::Migration
         t.string :hometown
     end
   end
+
 end
