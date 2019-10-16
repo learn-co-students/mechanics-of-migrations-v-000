@@ -1,6 +1,6 @@
 require_relative './spec_helper'
 
-puts describe "Artist" do
+ describe "Artist" do
   let(:artist) {Artist.new(name: 'Justice', genre: 'Electronic', age: Time.now.strftime("%Y").to_i - 2003, hometown: "Paris")}
 
   it "can instantiate a new instance" do
